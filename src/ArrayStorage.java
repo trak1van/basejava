@@ -30,9 +30,8 @@ public class ArrayStorage {
 
         boolean elementFound = false;
         for(int i=0;i<currentSize;i++){
-            int k = i - 1;
             if(elementFound){
-                storage[k] = storage[i];
+                storage[i-1] = storage[i];
             }
             if(storage[i].uuid == uuid && !elementFound){
                 storage[i]= null;
