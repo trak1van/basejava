@@ -10,10 +10,14 @@ public class ArrayStorage {
     }
 
     void save(Resume r) {
+        storage[currentSize] = r;
         currentSize++;
     }
 
     Resume get(String uuid) {
+        for(int i=0;i<currentSize;i++){
+
+        }
         return null;
     }
 
