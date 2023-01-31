@@ -27,7 +27,21 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
-        currentSize--;
+
+        boolean elementFound = false;
+        for(int i=0;i<currentSize;i++){
+            int k = i - 1;
+            if(elementFound){
+                storage[k] = storage[i];
+            }
+            if(storage[i].uuid == uuid && !elementFound){
+                storage[i]= null;
+                elementFound = true;
+            }
+        }
+        if(elementFound) {
+            currentSize--;
+        }
     }
 
 
@@ -35,7 +49,12 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        return new Resume[0];
+
+        Resume[] fullStorage = new Resume[currentSize];
+        for(int i =0;i<currentSize;i++){
+            fullStorage[i] = storage[i];
+        }
+        return fullStorage;
     }
 
     int size() {
