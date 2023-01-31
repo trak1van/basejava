@@ -4,10 +4,13 @@
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
 
+    private int currentSize = 0;
     void clear() {
+        currentSize = 0;
     }
 
     void save(Resume r) {
+        currentSize++;
     }
 
     Resume get(String uuid) {
@@ -15,7 +18,9 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
+        currentSize--;
     }
+
 
     /**
      * @return array, contains only Resumes in storage (without null)
@@ -25,6 +30,6 @@ public class ArrayStorage {
     }
 
     int size() {
-        return 0;
+        return currentSize;
     }
 }
