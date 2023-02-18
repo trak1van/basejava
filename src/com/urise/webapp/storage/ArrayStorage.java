@@ -15,7 +15,7 @@ public class ArrayStorage implements Storage{
     private int count = 0;
 
     public void clear() {
-        Arrays.fill(storage, null);
+        Arrays.fill(storage,  0, count, null);
         count = 0;
     }
 
