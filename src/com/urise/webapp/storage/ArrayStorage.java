@@ -13,21 +13,17 @@ public class ArrayStorage {
     private int count = 0;
 
     public void clear() {
-       /*for (int i = 0; i < count; i++) {
-            storage[i] = null;
-        }
-        count = 0;*/
         Arrays.fill(storage, null);
         count = 0;
     }
 
     public void save(Resume r) {
         int i = getIndex(r.getUuid());
-        if(i!=-1){
-            System.out.println("Данный uuid: "+ r.getUuid()+ " уже существует.");
-        } else if (count == storage.length) {
-            System.out.println("Переполнение массива ArraySorage");
-        }else {
+        if (i != -1) {
+            System.out.println("Resume: " + r.getUuid() + " already exist");
+        } else if (count >= storage.length) {
+            System.out.println("Storage overflow");
+        } else {
             storage[count] = r;
             count++;
         }
@@ -36,7 +32,7 @@ public class ArrayStorage {
     public Resume get(String uuid) {
         int i = getIndex(uuid);
         if (i == -1) {
-            System.out.println("Элемент с uuid: " + uuid + " не найден");
+            System.out.println("Resume: " + uuid + " not exist");
             return null;
         } else {
             return storage[i];
@@ -68,7 +64,7 @@ public class ArrayStorage {
 
     private int getIndex(String uuid) {
         for (int i = 0; i < count; i++) {
-            if (storage[i].getUuid() == uuid) {
+            if (uuid.equals(storage[i].getUuid())) {
                 return i;
             }
         }
@@ -78,7 +74,7 @@ public class ArrayStorage {
     public void update(Resume resume) {
         int i = getIndex(resume.getUuid());
         if (i == -1) {
-            System.out.println("Элемент с uuid: " + resume.getUuid() + " не найден");
+            System.out.println("Resume: " + resume.getUuid() + " not exist");
         } else {
             storage[i] = resume;
         }
