@@ -56,15 +56,14 @@ public class ArrayStorage implements Storage{
      * @return array, contains only Resumes in storage (without null)
      */
     public Resume[] getAll() {
-        Resume[] allResume = Arrays.copyOf(storage, count);
-        return allResume;
+        return Arrays.copyOfRange(storage, 0, count);
     }
 
     public int size() {
         return count;
     }
 
-    private int getIndex(String uuid) {
+    protected int getIndex(String uuid) {
         for (int i = 0; i < count; i++) {
             if (uuid.equals(storage[i].getUuid())) {
                 return i;
