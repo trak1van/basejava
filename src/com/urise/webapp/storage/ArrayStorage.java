@@ -42,7 +42,7 @@ public class ArrayStorage {
     public void delete(String uuid) {
         int i = getIndex(uuid);
         if (i == -1) {
-            System.out.println("Элемент с uuid: " + uuid + " не найден");
+            System.out.println("Resume: " + uuid + " not exist");
         } else {
             storage[i] = storage[count - 1];
             storage[count - 1] = null;
