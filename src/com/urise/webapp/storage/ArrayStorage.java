@@ -2,21 +2,13 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
-import java.util.Arrays;
-
 /**
  * Array based storage for Resumes
  */
-public class ArrayStorage extends AbstractArrayStorage{
-
-    public void clear() {
-        Arrays.fill(storage,  0, count, null);
-        count = 0;
-    }
-
+public class ArrayStorage extends AbstractArrayStorage {
     public void save(Resume r) {
-        int i = getIndex(r.getUuid());
-        if (i != -1) {
+        int index = getIndex(r.getUuid());
+        if (index != -1) {
             System.out.println("Resume: " + r.getUuid() + " already exist");
         } else if (count >= storage.length) {
             System.out.println("Storage overflow");
@@ -27,21 +19,14 @@ public class ArrayStorage extends AbstractArrayStorage{
     }
 
     public void delete(String uuid) {
-        int i = getIndex(uuid);
-        if (i == -1) {
+        int index = getIndex(uuid);
+        if (index == -1) {
             System.out.println("Resume: " + uuid + " not exist");
         } else {
-            storage[i] = storage[count - 1];
+            storage[index] = storage[count - 1];
             storage[count - 1] = null;
             count--;
         }
-    }
-
-    /**
-     * @return array, contains only Resumes in storage (without null)
-     */
-    public Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, count);
     }
 
     protected int getIndex(String uuid) {
@@ -54,11 +39,11 @@ public class ArrayStorage extends AbstractArrayStorage{
     }
 
     public void update(Resume resume) {
-        int i = getIndex(resume.getUuid());
-        if (i == -1) {
+        int index = getIndex(resume.getUuid());
+        if (index == -1) {
             System.out.println("Resume: " + resume.getUuid() + " not exist");
         } else {
-            storage[i] = resume;
+            storage[index] = resume;
         }
     }
 }

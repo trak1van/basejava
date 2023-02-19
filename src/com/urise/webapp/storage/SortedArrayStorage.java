@@ -4,30 +4,45 @@ import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
 
-public class SortedArrayStorage extends AbstractArrayStorage{
-    @Override
-    public void clear() {
-
-    }
+public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     public void update(Resume r) {
-
+        int index = getIndex(r.getUuid());
+        if (index < 0) {
+            System.out.println("Resume: " + r.getUuid() + " not exist");
+        }else{
+            storage[index] = r;
+        }
     }
 
     @Override
     public void save(Resume r) {
-
+        int index = getIndex(r.getUuid());
+        if (index >= 0) {
+            System.out.println("Resume:" + r.getUuid() + " already exsits");
+        } else {
+            if (count >= storage.length) {
+                System.out.println("Storage overflow");
+            } else {
+                storage[-index - 1] = r;
+                count++;
+            }
+        }
     }
 
     @Override
     public void delete(String uuid) {
-
-    }
-
-    @Override
-    public Resume[] getAll() {
-        return new Resume[0];
+        int index = getIndex(uuid);
+        if (index < 0) {
+            System.out.println("Resume: " + uuid + " not exists");
+        } else {
+            for (int i = index; i < count - 1; i++) {
+                storage[i] = storage[i + 1];
+            }
+            storage[count - 1] = null;
+            count--;
+        }
     }
 
     @Override

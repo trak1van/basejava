@@ -2,6 +2,8 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
+import java.util.Arrays;
+
 public abstract class AbstractArrayStorage implements Storage {
     protected static final int STORAGE_LIMIT = 10000;
 
@@ -20,6 +22,18 @@ public abstract class AbstractArrayStorage implements Storage {
         } else {
             return storage[i];
         }
+    }
+
+    public void clear() {
+        Arrays.fill(storage,  0, count, null);
+        count = 0;
+    }
+
+    /**
+     * @return array, contains only Resumes in storage (without null)
+     */
+    public Resume[] getAll() {
+        return Arrays.copyOfRange(storage, 0, count);
     }
 
     protected abstract int getIndex(String uuid);
