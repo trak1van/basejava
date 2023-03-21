@@ -15,15 +15,6 @@ public abstract class AbstractArrayStorage extends AbstactStorage {
         return count;
     }
 
-    /*public Resume get(String uuid) {
-        int index = getIndex(uuid);
-        if (index == -1) {
-            throw new NotExistStorageException(uuid);
-        } else {
-            return storage[index];
-        }
-    }*/
-
     public void clear() {
         Arrays.fill(storage, 0, count, null);
         count = 0;
@@ -44,11 +35,6 @@ public abstract class AbstractArrayStorage extends AbstactStorage {
     @Override
     protected boolean isExist(Object searchKey) {
         return (Integer) searchKey >= 0;
-    }
-
-    @Override
-    protected Integer getSearchKey(String uuid) {
-        return getIndex(uuid);
     }
 
     @Override
@@ -73,41 +59,8 @@ public abstract class AbstractArrayStorage extends AbstactStorage {
         return storage[((Integer) searchKey)];
     }
 
-    /*public void update(Resume r) {
-        int index = getIndex(r.getUuid());
-        if (index < 0) {
-            throw new NotExistStorageException(r.getUuid());
-        }else{
-            storage[index] = r;
-        }
-    }
-
-    public void save(Resume r) {
-        int index = getIndex(r.getUuid());
-        if (index >= 0) {
-            throw new ExistStorageException(r.getUuid());
-        } else {
-            if (count >= STORAGE_LIMIT) {
-                throw new StorageException("Storage overflow", r.getUuid());
-            } else {
-                insertElement(index, r);
-                count++;
-            }
-        }
-    }
-
-    public void delete(String uuid) {
-        int index = getIndex(uuid);
-        if (index < 0) {
-            throw new NotExistStorageException(uuid);
-        } else {
-            fillDeteleElement(index);
-            storage[count - 1] = null;
-            count--;
-        }
-    }*/
-
-    protected abstract int getIndex(String uuid);
+    //protected abstract int getIndex(String uuid);
+    protected abstract Integer getSearchKey(String uuid);
 
     protected abstract void fillDeteleElement(int index);
 
