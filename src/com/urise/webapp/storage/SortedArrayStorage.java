@@ -16,18 +16,14 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 */
 
-    private static final Comparator<Resume> RESUME_COMPARATOR = new Comparator<Resume>() {
+   /* private static final Comparator<Resume> RESUME_COMPARATOR = new Comparator<Resume>() {
         @Override
         public int compare(Resume o1, Resume o2) {
             return o1.getUuid().compareTo(o2.getUuid());
         }
-    };
-//    @Override
-//    protected int getIndex(String uuid) {
-//        Resume searchKey = new Resume();
-//        searchKey.setUuid(uuid);
-//        return Arrays.binarySearch(storage, 0, count, searchKey);
-//    }
+    };*/
+
+    private static final Comparator<Resume> RESUME_COMPARATOR = (o1, o2) -> o1.getUuid().compareTo(o2.getUuid());
 
     @Override
     protected void fillDeteleElement(int index) {
