@@ -12,15 +12,23 @@ import static org.junit.Assert.assertEquals;
 
 public abstract class AbstractStorageTest {
 
-    private Storage storage;
+    protected Storage storage;
     private static final String UUID_1 = "uuid1";
-    private static final Resume RESUME_UUID_1 = new Resume(UUID_1);
     private static final String UUID_2 = "uuid2";
-    private static final Resume RESUME_UUID_2 = new Resume(UUID_2);
     private static final String UUID_3 = "uuid3";
-    private static final Resume RESUME_UUID_3 = new Resume(UUID_3);
     private static final String UUID_4 = "uuid4";
-    private static final Resume RESUME_UUID_4 = new Resume(UUID_4);
+
+    private static final Resume RESUME_1;
+    private static final Resume RESUME_2;
+    private static final Resume RESUME_3;
+    private static final Resume RESUME_4;
+
+    static {
+        RESUME_1 = new Resume(UUID_1);
+        RESUME_2 = new Resume(UUID_2);
+        RESUME_3 = new Resume(UUID_3);
+        RESUME_4 = new Resume(UUID_4);
+    }
 
     public AbstractStorageTest(Storage storage) {
         this.storage = storage;
@@ -29,9 +37,9 @@ public abstract class AbstractStorageTest {
     @Before
     public void setUp() throws Exception {
         storage.clear();
-        storage.save(RESUME_UUID_1);
-        storage.save(RESUME_UUID_2);
-        storage.save(RESUME_UUID_3);
+        storage.save(RESUME_1);
+        storage.save(RESUME_2);
+        storage.save(RESUME_3);
     }
 
     public void assertSize(int size) {
@@ -49,9 +57,9 @@ public abstract class AbstractStorageTest {
 
     @Test
     public void get() {
-        assertResume(RESUME_UUID_1);
-        assertResume(RESUME_UUID_2);
-        assertResume(RESUME_UUID_3);
+        assertResume(RESUME_1);
+        assertResume(RESUME_2);
+        assertResume(RESUME_3);
     }
 
     @Test
@@ -64,9 +72,9 @@ public abstract class AbstractStorageTest {
     public void getAll() {
         Resume[] allResume = storage.getAll();
         assertEquals(3, allResume.length);
-        assertResume(RESUME_UUID_1);
-        assertResume(RESUME_UUID_2);
-        assertResume(RESUME_UUID_3);
+        assertResume(RESUME_1);
+        assertResume(RESUME_2);
+        assertResume(RESUME_3);
     }
 
     @Test
@@ -78,27 +86,15 @@ public abstract class AbstractStorageTest {
 
     @Test
     public void save() {
-        storage.save(RESUME_UUID_4);
+        storage.save(RESUME_4);
         assertSize(4);
-        assertResume(RESUME_UUID_4);
+        assertResume(RESUME_4);
     }
 
     @Test(expected = ExistStorageException.class)
     public void saveExist() {
-        storage.save(RESUME_UUID_3);
+        storage.save(RESUME_3);
     }
-
-   /* @Test(expected = StorageException.class)
-    public void saveOverFlow(){
-        try {
-            for (int i = 4; i <= AbstractArrayStorage.STORAGE_LIMIT; i++) {
-                storage.save(new Resume());
-            }
-        }catch (StorageException e){
-            Assert.fail();
-        }
-        storage.save(new Resume());
-    }*/
 
     @Test(expected = NotExistStorageException.class)
     public void delete() {
