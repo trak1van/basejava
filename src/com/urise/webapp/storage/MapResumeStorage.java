@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MapStorage extends AbstactStorage {
+public class MapResumeStorage extends AbstactStorage {
 
     private HashMap<String, Resume> map = new HashMap<>();
 
@@ -16,33 +16,33 @@ public class MapStorage extends AbstactStorage {
     }
 
     @Override
-    protected Resume doGet(Object searchKey) {
-        return map.get((String) searchKey);
+    protected Resume doGet(Object resume){
+        return (Resume) resume;
     }
 
     @Override
-    protected void doUpdate(Resume r, Object searchKey) {
-        map.replace((String) searchKey, r);
+    protected void doUpdate(Resume r, Object resume){
+        map.put(r.getUuid(), r);
     }
 
     @Override
-    protected boolean isExist(Object searchKey) {
-        return map.containsKey((String) searchKey);
+    protected boolean isExist(Object resume) {
+        return resume!=null;
     }
 
     @Override
-    protected String getSearchKey(String uuid) {
-        return uuid;
+    protected Resume getSearchKey(String uuid) {
+        return map.get(uuid);
     }
 
     @Override
-    protected void doSave(Resume r, Object searchKey) {
-        map.put((String) searchKey, r);
+    protected void doSave(Resume r, Object resume) {
+        map.put(r.getUuid(), r);
     }
 
     @Override
-    protected void doDelete(Object searchKey) {
-        map.remove((String) searchKey);
+    protected void doDelete(Object resume) {
+        map.remove(((Resume) resume).getUuid());
     }
 
     @Override

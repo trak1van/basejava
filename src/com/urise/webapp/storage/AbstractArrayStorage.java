@@ -4,6 +4,7 @@ import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
+import java.util.List;
 
 public abstract class AbstractArrayStorage extends AbstactStorage {
     protected static final int STORAGE_LIMIT = 10000;
@@ -59,7 +60,10 @@ public abstract class AbstractArrayStorage extends AbstactStorage {
         return storage[((Integer) searchKey)];
     }
 
-    //protected abstract int getIndex(String uuid);
+    @Override
+    protected List<Resume> doCopyAll() {
+        return Arrays.asList(Arrays.copyOfRange(storage,0,count));
+    }
     protected abstract Integer getSearchKey(String uuid);
 
     protected abstract void fillDeteleElement(int index);

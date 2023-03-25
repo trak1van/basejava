@@ -46,6 +46,11 @@ public class ListStorage extends AbstactStorage {
     }
 
     @Override
+    protected List<Resume> doCopyAll() {
+        return new ArrayList<>(list);
+    }
+
+    @Override
     protected Resume doGet(Object searchKey) {
         return list.get((Integer) searchKey);
     }
