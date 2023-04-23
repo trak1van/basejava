@@ -5,10 +5,14 @@ import com.urise.webapp.model.Resume;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.File;
+
 public abstract class AbstractArrayStorageTest extends AbstractStorageTest{
     public AbstractArrayStorageTest(Storage storage) {
         super(storage);
     }
+
+    protected static final File STORAGE_DIR = new File("E:\\repository\\basejava\\basejava\\src\\com\\urise\\webapp\\resultfiles");
 
     @Test(expected = StorageException.class)
     public void saveOverFlow(){

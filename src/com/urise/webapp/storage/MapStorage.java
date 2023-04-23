@@ -50,10 +50,10 @@ public class MapStorage extends AbstractStorage<String> {
         map.clear();
     }
 
-    @Override
+   /* @Override
     public Resume[] getAll() {
         return map.values().toArray(new Resume[map.size()]);
-    }
+    }*/
 
     @Override
     public int size() {

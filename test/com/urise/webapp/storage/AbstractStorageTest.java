@@ -82,7 +82,7 @@ public abstract class AbstractStorageTest {
     public void update() {
         Resume newResume = new Resume(UUID_2, "New name");
         storage.update(newResume);
-        Assert.assertTrue(newResume==storage.get(UUID_2));
+        Assert.assertTrue(newResume.equals(storage.get(UUID_2)));
     }
 
     @Test
@@ -108,7 +108,6 @@ public abstract class AbstractStorageTest {
     public void deleteNotExist() throws Exception {
         storage.delete("dummy");
     }
-
 
     @Test(expected = NotExistStorageException.class)
     public void getNotExist() throws Exception {

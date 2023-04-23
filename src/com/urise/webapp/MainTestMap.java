@@ -20,7 +20,7 @@ public class MainTestMap {
         Map.save(RESUME_UUID_3);
         Map.save(RESUME_UUID_4);
         System.out.println(Map.size());
-        for (Resume r: Map.getAll()) {
+        /*for (Resume r: Map.getAll()) {
             System.out.println(r);
         }
         //System.out.println(Map.getAll());
@@ -28,6 +28,6 @@ public class MainTestMap {
         System.out.println(Map.size());
         for (Resume r: Map.getAll()) {
             System.out.println(r);
-        }
+        }*/
     }
 }
