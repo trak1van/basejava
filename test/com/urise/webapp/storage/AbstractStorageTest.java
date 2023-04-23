@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,6 +26,8 @@ public abstract class AbstractStorageTest {
     private static final Resume RESUME_2;
     private static final Resume RESUME_3;
     private static final Resume RESUME_4;
+
+    protected static final File STORAGE_DIR = new File("E:\\repository\\basejava\\basejava\\src\\com\\urise\\webapp\\resultfiles");
 
     static {
         RESUME_1 = new Resume(UUID_1, "Name1");
